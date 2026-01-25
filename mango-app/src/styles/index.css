@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Notable&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /*defined custom classes*/
+  --font-mango: "Notable", sans-serif;
+
+  --color-highlight: #6e56cf;
+  --color-muted: #ededed;
+  --color-borderColor: #c9c5c5;
+  --color-mainbg: #f5f5ff;
+}
+
+@layer {
+  body {
+    @apply bg-mainbg;
+  }
+}
