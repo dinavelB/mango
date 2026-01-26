@@ -14,7 +14,7 @@ export default function HeroSection() {
               approach (Web + Extension) to ensure seamless data
               continuity.{" "}
             </p>
-            <div>
+            <div className="flex gap-10">
               <button className="px-10 py-3 rounded-xl bg-highlight text-white font-semibold text-xl">
                 Try mango
               </button>
