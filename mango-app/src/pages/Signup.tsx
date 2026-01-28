@@ -1,7 +1,11 @@
+import Nav from "../components/Nav";
+import Form from "../components/Form";
+
 export default function Signup() {
   return (
     <>
-      <h1>test</h1>
+      <Nav />
+      <Form />
     </>
   );
 }
