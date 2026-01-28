@@ -1,6 +1,12 @@
 import picture from "../assets/picture.jpg"; // Import the image
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
+  const nav = useNavigate();
+
+  const gotoSignup = () => {
+    nav("/signup");
+  };
   return (
     <>
       <section className="flex justify-center py-40">
@@ -15,7 +21,10 @@ export default function HeroSection() {
               continuity.{" "}
             </p>
             <div className="flex gap-10">
-              <button className="px-10 py-3 rounded-xl bg-highlight text-white font-semibold text-xl">
+              <button
+                className="px-10 py-3 rounded-xl bg-highlight text-white font-semibold text-xl transition duration-300 ease-in-out transform hover:-translate-y-4 hover:bg-purple-800"
+                onClick={gotoSignup}
+              >
                 Try mango
               </button>
               <button className="px-10 py-3 text-xl">Learn more</button>
