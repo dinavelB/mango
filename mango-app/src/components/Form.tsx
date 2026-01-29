@@ -7,8 +7,8 @@ export default function Form() {
     "
     >
       <section className="flex">
-        <div className="h-auto w-100 bg-borderColor"></div>
-        <div className="flex flex-col p-10 gap-3 border-gray-500 border-1 rounded-lg">
+        <div className="h-auto w-150 bg-borderColor"></div>
+        <div className="flex flex-col p-10 gap-3 border-gray-500 border-1 rounded-lg bg-white h-150 w-100">
           <div className="flex flex-col items-center gap-3">
             <h1 className="text-xl font-extrabold">Signup</h1>
             <p className="text-xs">explore mango by creating an account</p>
