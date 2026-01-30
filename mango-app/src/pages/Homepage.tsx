@@ -8,11 +8,11 @@ import { useEffect } from "react";
 export default function Homepage() {
   useEffect(() => {}, []);
   return (
-    <>
+    <section className=" bg-pattern-dot min-h-screen">
       <NavBar />
       <HeroSection />
       <Feature />
       <Footer />
-    </>
+    </section>
   );
 }
