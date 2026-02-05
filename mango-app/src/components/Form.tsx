@@ -6,12 +6,13 @@ export default function Form() {
   const [data, setData] = useState({
     email: "",
     password: "",
+    confirmpass: "",
   });
 
   const getuserinput = (e: any) => {
     const { name, value } = e.target; //initialize
 
-    //set with old data
+    //to prevent erasing inputs
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -21,10 +22,10 @@ export default function Form() {
   const createAccount = async () => {
     const userobj = new UserInfo();
     try {
-      const response = await userobj.createAcc(data); //awaits service response from the controller
+      const response = await userobj.createAcc(data); //awaits service frontend response from the controller
       console.log(response);
     } catch (error: any) {
-      console.log("error at", error.message);
+      console.log("error at", error.response.data);
     }
   };
 
