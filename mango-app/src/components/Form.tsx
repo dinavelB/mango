@@ -1,6 +1,33 @@
+import { useState } from "react";
 import google from "../assets/Google.jpg";
+import UserInfo from "../services/create-account";
 
 export default function Form() {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const getuserinput = (e: any) => {
+    const { name, value } = e.target; //initialize
+
+    //set with old data
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const createAccount = async () => {
+    const userobj = new UserInfo();
+    try {
+      const response = await userobj.createAcc(data); //awaits service response from the controller
+      console.log(response);
+    } catch (error: any) {
+      console.log("error at", error.message);
+    }
+  };
+
   return (
     <section
       className="flex justify-center h-full pt-40
@@ -21,27 +48,37 @@ export default function Form() {
             Email
           </label>
           <input
+            name="email"
             type="email"
             placeholder="Enter your email"
             className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner"
+            onChange={getuserinput}
           />
           <label className="text-xl" htmlFor="">
             Password
           </label>
           <input
+            name="password"
             type="password"
             placeholder="Enter your password"
             className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner"
+            onChange={getuserinput}
           />
           <label className="text-xl" htmlFor="">
             Confirm Password
           </label>
           <input
+            name="confirmpassword"
             type="password"
             placeholder="Confirm your password"
             className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner "
+            onChange={getuserinput}
           />
-          <button className="bg-highlight text-white w-48 ml-27 rounded-sm py-2 transition duration-300 hover:bg-purple-800">
+          <button
+            type="button"
+            onClick={createAccount}
+            className="bg-highlight text-white w-48 ml-27 rounded-sm py-2 transition duration-300 hover:bg-purple-800"
+          >
             Signup
           </button>
         </div>
