@@ -6,7 +6,7 @@ export default function Form() {
   const [data, setData] = useState({
     email: "",
     password: "",
-    confirmpass: "",
+    confirmpassword: "",
   });
 
   const getuserinput = (e: any) => {
@@ -25,7 +25,7 @@ export default function Form() {
       const response = await userobj.createAcc(data); //awaits service frontend response from the controller
       console.log(response);
     } catch (error: any) {
-      console.log("error at", error.response.data);
+      console.log("error:", error.message);
     }
   };
 
