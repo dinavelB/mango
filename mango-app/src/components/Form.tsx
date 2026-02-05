@@ -26,7 +26,8 @@ export default function Form() {
       const response = await userobj.createAcc(data); //awaits service frontend response from the controller
       console.log(response.data);
     } catch (error: any) {
-      console.log(error.response.data); // access specific response
+      console.log(error.message);
+      console.log(error.response.data);
     }
   };
 
