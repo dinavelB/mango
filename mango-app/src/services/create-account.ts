@@ -20,7 +20,7 @@ export default class UserInfo {
       console.log("request reached sucessfully");
       return response.data; //what the backend sents
     } catch (error: any) {
-      console.log("error:", error.message);
+      throw error; // re throw the error from controller
     }
   };
 }

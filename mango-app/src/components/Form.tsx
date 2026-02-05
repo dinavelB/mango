@@ -1,6 +1,7 @@
 import { useState } from "react";
 import google from "../assets/Google.jpg";
 import UserInfo from "../services/create-account";
+import { Routes } from "react-router-dom";
 
 export default function Form() {
   const [data, setData] = useState({
@@ -23,9 +24,9 @@ export default function Form() {
     const userobj = new UserInfo();
     try {
       const response = await userobj.createAcc(data); //awaits service frontend response from the controller
-      console.log(response);
+      console.log(response.data);
     } catch (error: any) {
-      console.log("error:", error.message);
+      console.log(error.response.data); // access specific response
     }
   };
 
