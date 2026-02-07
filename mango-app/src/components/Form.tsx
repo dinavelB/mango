@@ -2,12 +2,19 @@ import { useState } from "react";
 import google from "../assets/Google.jpg";
 import UserInfo from "../services/create-account";
 import { Routes } from "react-router-dom";
+import { createAccount } from "../util/helper/account-creation";
 
 export default function Form() {
   const [data, setData] = useState({
     email: "",
     password: "",
     confirmpassword: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: false,
+    password: false,
+    confirmpassword: false,
   });
 
   const getuserinput = (e: any) => {
@@ -18,16 +25,14 @@ export default function Form() {
       ...prevData,
       [name]: value,
     }));
-  };
 
-  const createAccount = async () => {
-    const userobj = new UserInfo();
-    try {
-      const response = await userobj.createAcc(data); //awaits service frontend response from the controller
-      console.log(response.data);
-    } catch (error: any) {
-      console.log(error.message);
-      console.log(error.response.data);
+    //if the value is not equals to trim ""
+    //truthy became falsy since errors are truthy now
+    if (value.trim() !== "") {
+      setErrors((prevData) => ({
+        ...prevData,
+        [name]: false, //
+      }));
     }
   };
 
@@ -54,7 +59,9 @@ export default function Form() {
             name="email"
             type="email"
             placeholder="Enter your email"
-            className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner"
+            className={`border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner ${
+              errors.email ? "border-red-500" : "border-borderColor"
+            }`}
             onChange={getuserinput}
           />
           <label className="text-xl" htmlFor="">
@@ -64,7 +71,9 @@ export default function Form() {
             name="password"
             type="password"
             placeholder="Enter your password"
-            className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner"
+            className={`border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner ${
+              errors.password ? "border-red-500" : "border-borderColor"
+            }`}
             onChange={getuserinput}
           />
           <label className="text-xl" htmlFor="">
@@ -74,12 +83,14 @@ export default function Form() {
             name="confirmpassword"
             type="password"
             placeholder="Confirm your password"
-            className="border-borderColor border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner "
+            className={`border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner ${
+              errors.confirmpassword ? "border-red-500" : "border-borderColor"
+            }`}
             onChange={getuserinput}
           />
           <button
             type="button"
-            onClick={createAccount}
+            onClick={() => createAccount(data, setErrors)}
             className="bg-highlight text-white w-48 ml-27 rounded-sm py-2 transition duration-300 hover:bg-purple-800"
           >
             Signup
