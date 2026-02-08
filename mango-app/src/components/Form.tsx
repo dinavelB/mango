@@ -1,8 +1,8 @@
 import { useState } from "react";
 import google from "../assets/Google.jpg";
-import UserInfo from "../services/create-account";
-import { Routes } from "react-router-dom";
 import { createAccount } from "../util/helper/account-creation";
+import { validatePassword } from "../util/helper/password-format-helper";
+import { StrengthBar } from "./Validators";
 
 export default function Form() {
   const [data, setData] = useState({
@@ -17,30 +17,52 @@ export default function Form() {
     confirmpassword: false,
   });
 
-  const getuserinput = (e: any) => {
-    const { name, value } = e.target; //initialize
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+  const [showPasswordMatchError, setShowPasswordMatchError] = useState(false);
 
-    //to prevent erasing inputs
+  const hasPassword = data.password.length > 0;
+
+  // show strength bar when there is a password
+  const getStrength = () => {
+    if (!hasPassword) return null;
+
+    const errorCount = passwordErrors.length;
+    if (errorCount === 0) return "strong";
+    if (errorCount <= 2) return "medium";
+    return "weak";
+  };
+
+  const strength = getStrength();
+
+  const getuserinput = (e: any) => {
+    const { name, value } = e.target;
+
     setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
 
-    //if the value is not equals to trim ""
-    //truthy became falsy since errors are truthy now
     if (value.trim() !== "") {
       setErrors((prevData) => ({
         ...prevData,
-        [name]: false, //
+        [name]: false,
       }));
+    }
+
+    if (name === "password") {
+      const validation = validatePassword(value);
+      setPasswordErrors(validation.errors);
+      // Also check confirm password when password changes
+      if (data.confirmpassword) {
+        setShowPasswordMatchError(value !== data.confirmpassword);
+      }
+    } else if (name === "confirmpassword") {
+      setShowPasswordMatchError(value !== data.password);
     }
   };
 
   return (
-    <section
-      className="flex justify-center h-full pt-40
-    "
-    >
+    <section className="flex justify-center h-full pt-40">
       <section className="flex">
         <div className="h-auto w-150 bg-borderColor"></div>
         <div className="flex flex-col p-10 gap-3 shadow-black-200 shadow-xl rounded-lg bg-white h-150 w-auto">
@@ -58,6 +80,7 @@ export default function Form() {
           <input
             name="email"
             type="email"
+            value={data.email}
             placeholder="Enter your email"
             className={`border-1 pl-5 py-3 rounded text-base outline-none shadow-borderColor shadow-inner ${
               errors.email ? "border-red-500" : "border-borderColor"
@@ -68,6 +91,7 @@ export default function Form() {
             Password
           </label>
           <input
+            value={data.password}
             name="password"
             type="password"
             placeholder="Enter your password"
@@ -80,6 +104,7 @@ export default function Form() {
             Confirm Password
           </label>
           <input
+            value={data.confirmpassword}
             name="confirmpassword"
             type="password"
             placeholder="Confirm your password"
@@ -88,6 +113,15 @@ export default function Form() {
             }`}
             onChange={getuserinput}
           />
+          {hasPassword && (
+            <StrengthBar
+              strength={strength}
+              passwordErrors={passwordErrors}
+              showPasswordMatchError={showPasswordMatchError}
+              data={data}
+              errors={errors}
+            />
+          )}
           <button
             type="button"
             onClick={() => createAccount(data, setErrors)}
