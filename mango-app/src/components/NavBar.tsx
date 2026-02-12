@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/index.css";
 
 export default function NavBar() {
+  const nav = useNavigate();
+
+  const gotoSignup = () => {
+    nav("/signup");
+  };
   return (
     <>
       <nav className="">
@@ -15,7 +21,10 @@ export default function NavBar() {
             <button className="px-10 p-2 text-center bg-muted rounded-xl text-xl">
               Login
             </button>
-            <button className="px-10 p-2 text-center bg-highlight rounded-xl text-white text-xl">
+            <button
+              onClick={gotoSignup}
+              className="px-10 p-2 text-center bg-highlight rounded-xl text-white text-x transition duration-300 ease-in-out transform hover:-translate-y-2 hover:bg-purple-800"
+            >
               Sign up
             </button>
           </div>

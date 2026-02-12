@@ -1,4 +1,12 @@
+import HeroSection from "./HeroSection";
+import { useNavigate } from "react-router-dom";
+
 export default function Nav() {
+  const nav = useNavigate();
+
+  const logoClick = () => {
+    nav("/");
+  };
   return (
     <nav className="">
       <section
@@ -7,7 +15,12 @@ export default function Nav() {
   fixed top-0 w-full 
   backdrop-blur-lg bg-white/30"
       >
-        <h1 className=" font-mango text-3xl">mango</h1>
+        <h1
+          className=" font-mango text-3xl transform transition duration-200 ease-in-out hover:-translate-y-1 hover:text-purple-700"
+          onClick={logoClick}
+        >
+          mango
+        </h1>
       </section>
     </nav>
   );
