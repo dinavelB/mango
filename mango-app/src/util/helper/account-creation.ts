@@ -1,4 +1,5 @@
 import { type UserError, type User } from "../../types/user-type";
+import { useNavigate } from "react-router-dom";
 import UserInfo from "../../services/create-account";
 
 export const createAccount = async (

@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import google from "../assets/Google.jpg";
 import { createAccount } from "../util/helper/account-creation";
 import { validatePassword } from "../util/helper/password-format-helper";
 import { StrengthBar } from "./Validators";
+import Nav from "./Nav";
 
 export default function Form() {
+  const nav = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -33,6 +36,14 @@ export default function Form() {
   };
 
   const strength = getStrength();
+
+  const createacc = () => {
+    const response = createAccount(data, setErrors)
+      .then(() => {
+        nav("/login");
+      })
+      .catch(() => console.log("error creating an account"));
+  };
 
   const getuserinput = (e: any) => {
     const { name, value } = e.target;
@@ -64,7 +75,7 @@ export default function Form() {
   return (
     <section className="flex justify-center h-full pt-40">
       <section className="flex">
-        <div className="h-auto w-150 bg-borderColor"></div>
+        <div className=""></div>
         <div className="flex flex-col p-10 gap-3 shadow-black-200 shadow-xl rounded-lg bg-white h-150 w-auto">
           <div className="flex flex-col items-center gap-3">
             <h1 className="text-3xl font-extrabold">Signup</h1>
@@ -124,7 +135,7 @@ export default function Form() {
           )}
           <button
             type="button"
-            onClick={() => createAccount(data, setErrors)}
+            onClick={createacc}
             className="bg-highlight text-white w-48 ml-27 rounded-sm py-2 transition duration-300 hover:bg-purple-800"
           >
             Signup
