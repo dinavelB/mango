@@ -9,3 +9,8 @@ export type UserError = {
   password: boolean;
   confirmpassword: boolean;
 };
+
+export type UserLogin = {
+  loginemail: string;
+  loginpassword: string;
+};
