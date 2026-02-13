@@ -7,6 +7,10 @@ export default function NavBar() {
   const gotoSignup = () => {
     nav("/signup");
   };
+
+  const login = () => {
+    nav("/login");
+  };
   return (
     <>
       <nav className="">
@@ -18,7 +22,10 @@ export default function NavBar() {
         >
           <h1 className=" font-mango text-3xl">mango</h1>
           <div className=" p-0 flex gap-10">
-            <button className="px-10 p-2 text-center bg-muted rounded-xl text-xl">
+            <button
+              onClick={login}
+              className="px-10 p-2 text-center bg-muted rounded-xl text-xl transition duration-300 ease-in-out transform hover:-translate-y-2 hover:bg-purple-400 hover:text-white"
+            >
               Login
             </button>
             <button
