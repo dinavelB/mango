@@ -11,6 +11,11 @@ export type UserError = {
 };
 
 export type UserLogin = {
-  loginemail: string;
-  loginpassword: string;
+  email: string;
+  password: string;
+};
+
+export type ErrorLogin = {
+  message: string;
+  type: string;
 };
