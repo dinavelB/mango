@@ -1,6 +1,6 @@
 import { type User, type UserError } from "../types/user-type";
 import { api } from "../util/api/base-url";
-
+// used in helper
 export default class UserInfo {
   createAcc = async (userData: User) => {
     const { email, password, confirmpassword } = userData;
