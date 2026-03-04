@@ -1,10 +1,12 @@
-import Nav from "../components/Nav";
+import Layout from "@/layouts-shadcn/sidebar-layout";
 
-export default function Login() {
+export default function Dashboard() {
   return (
-    <section className=" bg-pattern-dot min-h-screen">
-      <Nav />
-      <h1>this is a test</h1>
-    </section>
+    <Layout>
+      <section className="w-full min-h-screen">
+        <h1 className="text-3xl font-bold p-6">Dashboard</h1>
+        <p className="px-6">Welcome to your dashboard</p>
+      </section>
+    </Layout>
   );
 }

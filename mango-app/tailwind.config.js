@@ -7,6 +7,9 @@ export default {
         // 'mango' will be the name of your utility class
         mango: ["Notable"],
       },
+      width: {
+        sidebar: "var(--sidebar-width)",
+      },
     },
   },
   plugins: [],
