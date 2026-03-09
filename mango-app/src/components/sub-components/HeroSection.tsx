@@ -1,4 +1,4 @@
-import picture from "../assets/picture.jpg"; // Import the image
+import picture from "../../assets/picture.jpg"; // Import the image
 import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {

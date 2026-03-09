@@ -1,4 +1,4 @@
-import features from "../util/features";
+import features from "../../util/features";
 
 export default function Feature() {
   return (
