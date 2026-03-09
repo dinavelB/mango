@@ -1,7 +1,7 @@
 import { useState } from "react";
-import google from "../assets/Google.jpg";
-import LoginUser from "../services/login.services";
-import type { ErrorLogin } from "../types/user-type";
+import google from "../../assets/Google.jpg";
+import LoginUser from "../../services/login.services";
+import type { ErrorLogin } from "../../types/user-type";
 import { useNavigate } from "react-router-dom";
 export default function FormComponent() {
   const login = new LoginUser();

@@ -1,4 +1,4 @@
-import type { StrengthBarProps } from "../types/interface/validators-props";
+import type { StrengthBarProps } from "../../types/interface/validators-props";
 
 export function StrengthBar({
   strength,

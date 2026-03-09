@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import google from "../assets/Google.jpg";
-import { createAccount } from "../util/helper/account-creation";
-import { validatePassword } from "../util/helper/password-format-helper";
+import google from "../../assets/Google.jpg";
+import { createAccount } from "../../util/helper/account-creation";
+import { validatePassword } from "../../util/helper/password-format-helper";
 import { StrengthBar } from "./Validators";
 import Nav from "./Nav";
 

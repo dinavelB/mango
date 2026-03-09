@@ -1,5 +1,5 @@
-import FormComponent from "../components/LoginForm";
-import Nav from "../components/Nav";
+import FormComponent from "../components/sub-components/LoginForm";
+import Nav from "../components/sub-components/Nav";
 
 export default function Login() {
   return (
